@@ -1,10 +1,10 @@
 ---
-version: 3.13.0
+version: 3.13.0-c
 hassio_api: true
-slug: nginx_proxy
+slug: nginx_proxy_custom
 name: NGINX Home Assistant SSL proxy
 description: An SSL/TLS proxy
-url: https://github.com/home-assistant/addons/tree/master/nginx_proxy
+url: https://github.com/YannicNoe/nginx_proxy_custom/tree/main
 arch:
   - armhf
   - armv7
