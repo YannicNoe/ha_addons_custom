@@ -1,0 +1,59 @@
+﻿name: "ACME.sh"
+version: "1.9.14"
+slug: "acme_sh"
+description: >
+  ACME.sh add-on using standalone mode for certificate issuance and renewal.
+  Stops and restarts NGINX add-on if configured.
+host_network: true
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+startup: "once"
+hassio_api: true
+homeassistant: true
+full_access: true
+boot: "auto"
+init: false
+map:
+  - ssl:rw
+  - share:rw
+
+options:
+  server: ""
+  email: ""
+  days: 60
+  domain: ""
+  extra_domains: []
+  nginx_addon_slug: null
+  use_insecure: false
+  use_force: false
+  force_issue: false
+
+schema:
+  server: str
+  email: str
+  days: int
+  domain: str
+  extra_domains:
+    - str?
+  nginx_addon_slug: str?
+  use_insecure: bool
+  use_force: bool
+  force_issue: bool
+
+# Provide hints in UI
+#documentation: |
+#  Before starting this add-on, please configure:
+#    - `server`: URL of your ACME directory (e.g. https://acme-v02.api.letsencrypt.org/directory)
+#    - `email`: your contact email used for ACME account registration
+#    - `domain`: main domain to issue a certificate for
+#    - `extra_domains`: optional list of additional domain names to include in the certificate
+#    - `nginx_addon_slug`: slug of your NGINX add-on (e.g. core_nginx_proxy) to restart after cert renewal; optional
+#    - `use_standalone`: true if no external webserver; ACME will temporarily open port 80, false to use webroot mode, webroot is under /share/acme-webroot
+#    - `insecure`: true to skip TLS verification for the ACME server
+#    - `days`: number of days before certificate expiration to attempt renewal (default 60)
+#    - `use_force`: true to force renewal even if the certificate is not yet expiring (--force)
+#    - `force_issue`: true to always issue a fresh certificate and skip renewal entirely
