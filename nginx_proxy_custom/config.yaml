@@ -1,8 +1,8 @@
 ---
-version: 3.13.0-c
+version: 3.13.0
 hassio_api: true
 slug: nginx_proxy_custom
-name: NGINX Home Assistant SSL proxy
+name: Custom NGINX Home Assistant SSL proxy
 description: An SSL/TLS proxy
 url: https://github.com/YannicNoe/nginx_proxy_custom/tree/main
 arch:
