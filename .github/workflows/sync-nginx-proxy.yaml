@@ -1,0 +1,43 @@
+---
+name: Sync nginx_proxy_custom with upstream
+
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write # keepalive: re-enable this workflow (avoids 60-day auto-disable)
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install pyyaml
+
+      - run: python3 scripts/sync_nginx_proxy.py
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "Already up to date"
+            exit 0
+          fi
+          version=$(grep -m1 '^version:' nginx_proxy_custom/config.yaml | awk '{print $2}')
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add nginx_proxy_custom
+          git commit -m "nginx_proxy_custom: sync with upstream ${version}"
+          git push
+
+      - name: Keepalive (reset 60-day inactivity timer)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/sync-nginx-proxy.yaml/enable"
