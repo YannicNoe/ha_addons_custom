@@ -1,0 +1,19 @@
+---
+configuration:
+  repository:
+    name: Repository
+    description: >-
+      SSH URL of the Git repository, e.g. git@github.com:user/ha-share.git
+  branch:
+    name: Branch
+    description: Branch to sync.
+  dry_run:
+    name: Dry run
+    description: Only log what would be changed, do not touch any file.
+  mappings:
+    name: Mappings
+    description: >-
+      List of folders to sync. source = folder in the repository (empty for
+      the root), target = folder below /share (empty for /share itself),
+      restart_addon = optional add-on slug to restart when files of this
+      mapping changed.

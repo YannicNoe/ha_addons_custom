@@ -1,0 +1,34 @@
+---
+name: Share Git Sync
+version: "1.0.0"
+slug: share_git_sync
+description: >-
+  Syncs folders from a (private) Git repository into /share. Only touches
+  files that are (or were) part of the repository.
+url: https://github.com/YannicNoe/ha_addons_custom/tree/main/share_git_sync
+arch:
+  - aarch64
+  - amd64
+startup: once
+boot: auto
+init: false
+hassio_api: true
+hassio_role: manager
+map:
+  - share:rw
+options:
+  repository: ""
+  branch: main
+  dry_run: false
+  mappings:
+    - source: nginx_proxy
+      target: nginx_proxy
+      restart_addon: nginx_proxy_custom
+schema:
+  repository: str
+  branch: str
+  dry_run: bool
+  mappings:
+    - source: str?
+      target: str?
+      restart_addon: str?
