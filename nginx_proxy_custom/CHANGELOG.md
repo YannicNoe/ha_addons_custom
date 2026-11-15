@@ -1,5 +1,42 @@
 # Changelog
 
+## 4.5.1
+
+- Fix nginx failing to start when the client max body size option is present (`incompatible types for comparison` in the config template)
+
+## 4.5.0
+
+- Allow setting the client max request body size from the UI (to be able to upload large files, such as a KNX project file through the proxy)
+
+## 4.4.0
+
+- Fix HTTP/3 requests with Home Assistant 2026.7.0 and newer
+
+## 4.3.0
+
+- Update base image to Alpine 3.24 (base image tag 3.24-2026.06.1) with nginx 1.30.x
+
+## 4.2.0
+
+- update SSL/TLS configuration and add PQC key exchange following Mozilla guidelines
+
+## 4.1.0
+
+- add use_ssl_backend option to support cases where the http section is using the ssl_certificate, ssl_key options
+
+## 4.0.0
+
+- Drop builds of unsupported architectures
+- Update base image to Alpine 3.23 (base image tag 3.23-2025.12.2)
+
+## 3.15.0
+
+- Support HTTP/3 (QUIC)
+
+## 3.14.0
+
+- Listen over IPv6, since true IPv6 support for add-ons is now available
+
 ## 3.13.0
 
 - Update Alpine Linux to 3.22 (nginx 1.28.x)
