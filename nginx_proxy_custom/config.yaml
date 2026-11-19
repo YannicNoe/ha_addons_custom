@@ -1,5 +1,5 @@
 ---
-version: 4.5.1
+version: 4.5.3
 hassio_api: true
 slug: nginx_proxy_custom
 name: Custom NGINX Home Assistant SSL proxy
@@ -8,7 +8,7 @@ url: https://github.com/YannicNoe/ha_addons_custom/tree/main/nginx_proxy_custom
 arch:
 - aarch64
 - amd64
-image: homeassistant/{arch}-addon-nginx_proxy
+image: ghcr.io/home-assistant/app-nginx-proxy
 init: false
 map:
 - ssl
